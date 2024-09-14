@@ -6,8 +6,10 @@ import { UserButton } from "@/features/auth/components/user-button";
 
 import { useGetWorkspaces } from "@/features/workspaces/api/use-get-workspaces";
 import { useCreateWorkspaceModal } from "@/features/workspaces/store/use-create-workspace-modal";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   const [open, setOpen] = useCreateWorkspaceModal();
   const { data, isLoading } = useGetWorkspaces();
 
@@ -17,11 +19,11 @@ export default function Home() {
     if (isLoading) return;
 
     if (workspaceId) {
-      console.log("Redirect to workspace");
+      router.replace(`/workspace/${workspaceId}`);
     } else if (!open) {
       setOpen(true);
     }
-  }, [isLoading, open, setOpen, workspaceId]);
+  }, [isLoading, open, router, setOpen, workspaceId]);
 
   return (
     <div>

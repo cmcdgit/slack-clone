@@ -9,7 +9,7 @@ export const Modals = () => {
   // fix for jotai implementation that only renders modals if in client side rendering
   const [mounted, setMounted] = useState(false);
 
-  // useEffect can only be called on client side rendering CSR
+  // useEffect can only be called during client side rendering CSR
   useEffect(() => {
     setMounted(true);
   }, []);
